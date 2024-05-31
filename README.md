@@ -207,3 +207,37 @@ footer {
     color: #fff;
     border: none;
 }
+function openChat() {
+    document.getElementById('chatbox').style.display = 'flex';
+}
+
+function closeChat() {
+    document.getElementById('chatbox').style.display = 'none';
+}
+
+function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const message = input.value.trim();
+    if (message) {
+        const messagesContainer = document.querySelector('.chatbox .messages');
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user-message');
+        userMessage.textContent = message;
+        messagesContainer.appendChild(userMessage);
+        
+        // Simulate chatbot response
+        const botMessage = document.createElement('div');
+        botMessage.classList.add('message', 'bot-message');
+        botMessage.textContent = 'This is a response from the chatbot.';
+        messagesContainer.appendChild(botMessage);
+
+        input.value = '';
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+}
+
+// Handle contact form submission
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('Message sent successfully!');
+});
